@@ -39,7 +39,7 @@ public class PosMachine {
 
     private String generateReceipt(String itemsReceipt, int totalPrice) {
         return "***<store earning no money>Receipt***" + "\n" +
-                itemsReceipt +
+                itemsReceipt + "\n" +
                 "----------------------" + "\n" +
                 "Total: " + totalPrice + " (yuan)" + "\n" +
                 "**********************";
