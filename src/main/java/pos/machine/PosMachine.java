@@ -27,4 +27,8 @@ public class PosMachine {
         receiptItems.forEach(receiptItem -> receiptItem.setSubTotal(receiptItem.getUnitPrice() * receiptItem.getQuantity()));
         return receiptItems;
     }
+
+    private int calculateTotalPrice(List<ReceiptItem> receiptItems) {
+        return receiptItems.stream().mapToInt(ReceiptItem::getSubTotal).sum();
+    }
 }
