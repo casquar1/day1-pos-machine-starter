@@ -36,4 +36,12 @@ public class PosMachine {
         List<ReceiptItem> receiptItemsWithSubtotal = calculateItemsCost(receiptItems);
         return new Receipt(receiptItemsWithSubtotal, calculateTotalPrice(receiptItemsWithSubtotal));
     }
+
+    private String generateReceipt(String itemsReceipt, int totalPrice) {
+        return "***<store earning no money>Receipt***" + "\n" +
+                itemsReceipt +
+                "----------------------" + "\n" +
+                "Total: " + totalPrice + " (yuan)" + "\n" +
+                "**********************";
+    }
 }
