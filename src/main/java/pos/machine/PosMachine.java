@@ -31,4 +31,9 @@ public class PosMachine {
     private int calculateTotalPrice(List<ReceiptItem> receiptItems) {
         return receiptItems.stream().mapToInt(ReceiptItem::getSubTotal).sum();
     }
+
+    private Receipt calculateCost(List<ReceiptItem> receiptItems) {
+        List<ReceiptItem> receiptItemsWithSubtotal = calculateItemsCost(receiptItems);
+        return new Receipt(receiptItemsWithSubtotal, calculateTotalPrice(receiptItemsWithSubtotal));
+    }
 }
