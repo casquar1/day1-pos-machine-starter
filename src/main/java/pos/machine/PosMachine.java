@@ -2,10 +2,13 @@ package pos.machine;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PosMachine {
     public String printReceipt(List<String> barcodes) {
-        return null;
+        List<ReceiptItem> receiptItems =decodeToItems(barcodes);
+        Receipt receipt = calculateCost(receiptItems);
+        return renderReceipt(receipt);
     }
 
     private List<ReceiptItem> decodeToItems(List<String> barcodes) {
@@ -17,7 +20,11 @@ public class PosMachine {
             ReceiptItem receiptItem = new ReceiptItem(item.getName(), quantity, item.getPrice(), 0);
             receiptItems.add(receiptItem);
         });
+        return receiptItems;
+    }
 
+    private List<ReceiptItem> calculateItemsCost(List<ReceiptItem> receiptItems) {
+        receiptItems.forEach(receiptItem -> receiptItem.setSubTotal(receiptItem.getUnitPrice() * receiptItem.getQuantity()));
         return receiptItems;
     }
 }
