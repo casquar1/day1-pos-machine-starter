@@ -52,4 +52,9 @@ public class PosMachine {
         });
         return receipt.toString();
     }
+
+    private String renderReceipt(Receipt receipt) {
+        String itemsReceipt = generateItemsReceipt(receipt);
+        return generateReceipt(itemsReceipt, receipt.getTotalPrice());
+    }
 }
