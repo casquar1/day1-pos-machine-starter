@@ -46,11 +46,9 @@ public class PosMachine {
     }
 
     private String generateItemsReceipt(Receipt receipt) {
-        receipt.getReceiptItems().forEach(item -> {
-            String.format("Name: %s, Quantity: %d, Unit price: %d (yuan), Subtotal: %d (yuan)\n",
-                    item.getName(), item.getQuantity(), item.getUnitPrice(), item.getSubTotal());
-        });
-        return receipt.toString();
+        return receipt.getReceiptItems().stream()
+                .map(item -> "Name: " + item.getName() + ", Quantity: " + item.getQuantity() + ", Unit price: " + item.getUnitPrice() + " (yuan)" + ", Subtotal: " + item.getSubTotal() + " (yuan)")
+                .collect(Collectors.joining("\n"));
     }
 
     private String renderReceipt(Receipt receipt) {
