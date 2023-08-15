@@ -16,7 +16,7 @@ public class PosMachine {
         List<ReceiptItem> receiptItems = new ArrayList<>();
 
         items.forEach(item -> {
-            int quantity = (int) barcodes.stream().filter(barcode -> barcodes.equals(item.getBarcode())).count();
+            int quantity = (int) barcodes.stream().filter(barcode -> barcode.equals(item.getBarcode())).count();
             ReceiptItem receiptItem = new ReceiptItem(item.getName(), quantity, item.getPrice(), 0);
             receiptItems.add(receiptItem);
         });
