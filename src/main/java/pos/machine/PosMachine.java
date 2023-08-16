@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class PosMachine {
     public String printReceipt(List<String> barcodes) {
-        List<ReceiptItem> receiptItems =decodeToItems(barcodes);
+        List<ReceiptItem> receiptItems = decodeToItems(barcodes);
         Receipt receipt = calculateCost(receiptItems);
         return renderReceipt(receipt);
     }
@@ -17,14 +17,14 @@ public class PosMachine {
 
         items.forEach(item -> {
             int quantity = (int) barcodes.stream().filter(barcode -> barcode.equals(item.getBarcode())).count();
-            ReceiptItem receiptItem = new ReceiptItem(item.getName(), quantity, item.getPrice(), 0);
+            ReceiptItem receiptItem = new ReceiptItem(item.getName(), quantity, item.getPrice());
             receiptItems.add(receiptItem);
         });
         return receiptItems;
     }
 
     private List<ReceiptItem> calculateItemsCost(List<ReceiptItem> receiptItems) {
-        receiptItems.forEach(receiptItem -> receiptItem.setSubTotal(receiptItem.getUnitPrice() * receiptItem.getQuantity()));
+        receiptItems.forEach(receiptItem -> receiptItem.setSubTotal(receiptItem.getUnitPrice()));
         return receiptItems;
     }
 
