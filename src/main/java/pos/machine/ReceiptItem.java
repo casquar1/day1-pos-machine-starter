@@ -6,11 +6,10 @@ public class ReceiptItem {
     private int unitPrice;
     private int subTotal;
 
-    public ReceiptItem(String name, int quantity, int unitPrice, int subTotal) {
+    public ReceiptItem(String name, int quantity, int unitPrice) {
         this.name = name;
         this.quantity = quantity;
         this.unitPrice = unitPrice;
-        this.subTotal = subTotal;
     }
 
     public String getName() {
@@ -26,19 +25,7 @@ public class ReceiptItem {
     }
 
     public int getSubTotal() {
-        return subTotal;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public void setUnitPrice(int unitPrice) {
-        this.unitPrice = unitPrice;
+        return subTotal * quantity;
     }
 
     public void setSubTotal(int subTotal) {
