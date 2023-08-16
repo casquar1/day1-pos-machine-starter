@@ -38,16 +38,18 @@ public class PosMachine {
     }
 
     private String generateReceipt(String itemsReceipt, int totalPrice) {
-        return "***<store earning no money>Receipt***" + "\n" +
-                itemsReceipt + "\n" +
-                "----------------------" + "\n" +
-                "Total: " + totalPrice + " (yuan)" + "\n" +
-                "**********************";
+        StringBuilder receiptOutput = new StringBuilder();
+        return receiptOutput.append("***<store earning no money>Receipt***\n")
+                .append(itemsReceipt)
+                .append("----------------------\n")
+                .append("Total: ").append(totalPrice).append(" (yuan)\n")
+                .append("**********************").toString();
     }
 
     private String generateItemsReceipt(Receipt receipt) {
         return receipt.getReceiptItems().stream()
-                .map(item -> "Name: " + item.getName() + ", Quantity: " + item.getQuantity() + ", Unit price: " + item.getUnitPrice() + " (yuan)" + ", Subtotal: " + item.getSubTotal() + " (yuan)")
+                .map(item -> "Name: " + item.getName() + ", Quantity: " + item.getQuantity() + ", Unit price: "
+                        + item.getUnitPrice() + " (yuan)" + ", Subtotal: " + item.getSubTotal() + " (yuan)")
                 .collect(Collectors.joining("\n"));
     }
 
